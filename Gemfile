@@ -1,4 +1,4 @@
-# 라이브러리 들을 명시하는 파일. 
+# 라이브러리 들을 명시하는 파일
 # bundle install 명령어를 통해 Gemfile에 명시된 라이브러리들을 설치할 수 있다.
 
 source "https://rubygems.org"
@@ -61,9 +61,8 @@ end
 
 group :test do
   gem "rails-controller-testing"
-  gem "minitest"  
+  gem "minitest"
   gem "minitest-reporters"
-  gem "guard"        
+  gem "guard"
   gem "guard-minitest"
 end
-
