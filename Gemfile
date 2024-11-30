@@ -34,6 +34,11 @@ gem "solid_cable"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# scss  파일을 사용하기 위한 라이브러리
+gem "bootstrap", "~> 5.3.3"
+gem "dartsass-sprockets"
+gem "bootstrap-sass"
+
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
