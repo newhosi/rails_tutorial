@@ -39,6 +39,9 @@ gem "bootstrap", "~> 5.3.3"
 gem "dartsass-sprockets"
 gem "bootstrap-sass"
 
+# 암호화를 위한 라이브러리
+gem "bcrypt"
+
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
