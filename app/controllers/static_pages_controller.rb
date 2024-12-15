@@ -2,9 +2,6 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def home_without_title
-  end
-
   def help
   end
 

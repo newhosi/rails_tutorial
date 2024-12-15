@@ -1,0 +1,5 @@
+<% provide(:title, @user.name) %>
+<div class="flex flex-row">
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</div>
