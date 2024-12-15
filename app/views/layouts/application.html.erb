@@ -12,6 +12,15 @@
 </head>
 
 <body>
+
+  <% flash.each do |message_type, message| %>
+  <% if message.present? %>
+  <div class="flex justify-center m-6 bg-green-300 p-4 rounded text-white">
+    <%= message %>
+  </div>
+  <% end %>
+  <% end %>
+
   <div class="flex justify-center m-6">
     <%= yield %>
   </div>
