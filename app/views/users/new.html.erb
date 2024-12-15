@@ -1,23 +1,20 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<div class="w-1/2">
+  <%= form_with model: @user, class: "flex flex-col space-y-2" do |f| %>
+  <%= render 'shared/error_messages' %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages' %>
+  <%= f.label :name, class: "font-bold"%>
+  <%= f.text_field :name, class: "grow" %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <%= f.label :email, class: "font-bold" %>
+  <%= f.email_field :email %>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <%= f.label :password, class: "font-bold" %>
+  <%= f.password_field :password %>
 
-    <%= f.password_field :password %>
+  <%= f.label :password_confirmation, "Confirmation", class: "font-bold" %>
+  <%= f.password_field :password_confirmation %>
 
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
-
-    <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <%= f.submit "Create my account", class: "text-white	rounded p-1 bg-sky-300 hover:bg-sky-500" %>
+  <% end %>
 </div>
