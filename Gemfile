@@ -34,11 +34,6 @@ gem "solid_cable"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# scss  파일을 사용하기 위한 라이브러리
-gem "bootstrap", "~> 5.3.3"
-gem "dartsass-sprockets"
-gem "bootstrap-sass"
-
 # 암호화를 위한 라이브러리
 gem "bcrypt"
 
@@ -54,6 +49,8 @@ gem "thruster", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+
+  gem "byebug"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -74,3 +71,5 @@ group :test do
   gem "guard"
   gem "guard-minitest"
 end
+
+gem "tailwindcss-rails", "~> 3.0"
