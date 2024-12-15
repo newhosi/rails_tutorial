@@ -4,6 +4,8 @@ require "rails/test_help"
 require "minitest/reporters"
 Minitest::Reporters.use!
 
+Rails.application.load_tasks
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
