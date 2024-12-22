@@ -14,8 +14,13 @@
 <body>
 
   <% flash.each do |message_type, message| %>
-  <% if message.present? %>
+  <% if message.present? && message_type == "success" %>
   <div class="flex justify-center m-6 bg-green-300 p-4 rounded text-white">
+    <%= message %>
+  </div>
+  <% end %>
+  <% if message.present? && message_type == "danger" %>
+  <div class="flex justify-center m-6 bg-red-300 p-4 rounded text-white">
     <%= message %>
   </div>
   <% end %>
