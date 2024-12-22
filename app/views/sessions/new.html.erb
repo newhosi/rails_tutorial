@@ -1,0 +1,14 @@
+<% provide(:title, 'Log in') %>
+<div class="w-1/2">
+  <%= form_with scope: :session, url: login_path, class: "flex flex-col space-y-2" do |f| %>
+
+  <%= f.label :email, class: "font-bold" %>
+  <%= f.email_field :email%>
+
+  <%= f.label :password, class: "font-bold" %>
+  <%= f.password_field :password%>
+
+  <%= f.submit "Log in", class: "text-white	rounded p-1 bg-sky-300 hover:bg-sky-500" %>
+  <% end %>
+  <div>New user? <%= link_to "Sign up now!", signup_path, class: "underline text-sky-700"%></div>
+</div>
