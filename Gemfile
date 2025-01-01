@@ -73,4 +73,4 @@ group :test do
   gem "guard-minitest"
 end
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 3.1"
