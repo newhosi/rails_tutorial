@@ -29,36 +29,20 @@
     aria-labelledby="menu-button"
     tabindex="-1"
     id="dropdown-menu"
-    class="absolute right-0 mt-10 w-56 bg-white shadow-lg focus:outline-none hidden"
+    class="absolute right-0 mt-10 w-48 bg-white shadow-lg focus:outline-none hidden"
   >
     <div class="py-1" role="none">
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        role="menuitem"
-        tabindex="-1"
-        id="menu-item-0"
-        >Profile</a
-      >
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        role="menuitem"
-        tabindex="-1"
-        id="menu-item-1"
-        >Account settings</a
-      >
-      <form method="POST" action="" role="none">
-        <button
-          type="submit"
-          class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-          role="menuitem"
-          tabindex="-1"
-          id="menu-item-3"
-        >
-          Log out
-        </button>
-      </form>
+      <li>
+        <%= link_to "Profiles", "", class: "block px-4 py-2 text-sm text-gray-700
+        hover:bg-gray-100"%>
+      </li>
+      <li>
+        <%= link_to "Account settings", "", class: "block px-4 py-2 text-sm text-gray-700
+        hover:bg-gray-100 border-2 border-white border-b-gray-100"%>
+      </li>
+        <%= link_to "Log out", logout_path, data: { turbo_method: :delete }, class: "block w-full
+        px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"%>
+      </li>
     </div>
   </div>
 </div>
