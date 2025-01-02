@@ -5,9 +5,7 @@
       <ul class="flex flex-row space-x-6 m-4">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
-        <% if logged_in? %>
-        <li><%= link_to "Users", user_path(current_user) %></li>
-        <%= render 'layouts/dropdown' %> <% else %>
+        <% if logged_in? %> <%= render 'layouts/dropdown' %> <% else %>
         <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
