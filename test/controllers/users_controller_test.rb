@@ -49,4 +49,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_nil session[:forwarding_url]
     assert_redirected_to @user
   end
+
+  test "should redirect index when not logged In" do
+    get users_path
+    assert_redirected_to login_url
+  end
 end
