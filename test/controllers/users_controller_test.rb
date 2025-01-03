@@ -38,4 +38,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert flash.empty?
     assert_redirected_to root_url
   end
+
+  test "should friendly forward only once" do
+    get edit_user_path(@user)
+    assert_equal session[:forwarding_url], edit_user_url(@user)
+    log_in_as(@user)
+    assert_redirected_to edit_user_url(@user)
+    patch user_path(@user), params: { user: { name: @user.name,
+                                              email: @user.email } }
+    assert_nil session[:forwarding_url]
+    assert_redirected_to @user
+  end
 end
