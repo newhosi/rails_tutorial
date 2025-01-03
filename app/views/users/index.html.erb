@@ -1,0 +1,13 @@
+<% provide(:title, "All users") %>
+<div class="w-1/2">
+  <div class="flex text-2xl underline text-center justify-center">All users</div>
+
+  <ul class="flex flex-col space-y-4">
+    <% @users.each do |user| %>
+    <div class="flex flex-row space-x-4 items-center">
+      <%= gravatar_for user, size: 50 %>
+      <li><%= link_to user.name, user %></li>
+    </div>
+    <% end %>
+  </ul>
+</div>
