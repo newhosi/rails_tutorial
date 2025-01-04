@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render 'layouts/rails_default' %> <%= render 'layouts/shim' %>
-    <title class="bg-sky-300 underline"><%= full_title(yield(:title)) %></title>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/rails_default' %> <%= render 'layouts/shim' %><%= render 'layouts/header' %>
+    <div class="hidden"><%= full_title(yield(:title)) %></div>
   </head>
-
   <body>
-    <% flash.each do |message_type, message| %> <% if message.present? && message_type == "success"
-    %>
-    <div class="flex justify-center m-6 bg-green-300 p-4 rounded text-white"><%= message %></div>
-    <% end %> <% if message.present? && message_type == "danger" %>
-    <div class="flex justify-center m-6 bg-red-300 p-4 rounded text-white"><%= message %></div>
-    <% end %> <% end %>
-
+    <%= render 'layouts/flash' %>
     <div class="flex justify-center m-6"><%= yield %></div>
   </body>
 
