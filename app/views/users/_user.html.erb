@@ -4,6 +4,7 @@
   <div>
     <% if current_user.admin? && !current_user?(user) %>
     <div>
+      <!-- TODO: are you sure not work -->
       <%= link_to user, data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
       <svg
         xmlns="http://www.w3.org/2000/svg"
