@@ -33,11 +33,11 @@
   >
     <div class="py-1" role="none">
       <li>
-        <%= link_to "Profiles", "", class: "block px-4 py-2 text-sm text-gray-700
+        <%= link_to "Profiles", current_user, class: "block px-4 py-2 text-sm text-gray-700
         hover:bg-gray-100"%>
       </li>
       <li>
-        <%= link_to "Account settings", "", class: "block px-4 py-2 text-sm text-gray-700
+        <%= link_to "Account settings", edit_user_path(current_user), class: "block px-4 py-2 text-sm text-gray-700
         hover:bg-gray-100 border-2 border-white border-b-gray-100"%>
       </li>
         <%= link_to "Log out", logout_path, data: { turbo_method: :delete }, class: "block w-full
