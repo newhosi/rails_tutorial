@@ -25,4 +25,10 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
       delete user_path(@non_admin)
     end
   end
+
+  test "index as excludes non-activated users" do
+    log_in_as(@user)
+    get users_path
+    assert_not_equal "User.count", assigns(:users).count
+  end
 end
