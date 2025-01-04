@@ -2,7 +2,8 @@
 <html>
   <head>
     <%= render 'layouts/rails_default' %> <%= render 'layouts/shim' %><%= render 'layouts/header' %>
-    <div class="hidden"><%= full_title(yield(:title)) %></div>
+    <!-- TODO: title 태크 어따 쓰는지 잘 모르겠으니 찾아볼것.-->
+    <title><%= full_title(yield(:title)) %></title>
   </head>
   <body>
     <%= render 'layouts/flash' %>
