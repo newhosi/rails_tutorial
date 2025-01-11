@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<div class="grid grid-cols-3 gap-x-10">
+<div class="flex flex-row space-x-10">
   <div class="flex flex-row items-top">
     <div><%= gravatar_for @user %></div>
     <div class="pl-4 font-medium"><%= @user.name %></div>
@@ -13,6 +13,8 @@
       <div class="mt-10 space-y-1">
         <%== pagy_nav(@pagy) if @pagy.pages > 1 %> <%== pagy_info(@pagy) %>
       </div>
+    <% else %>
+      <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>
     <% end %>
   </div>
 </div>

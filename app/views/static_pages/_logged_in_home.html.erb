@@ -1,8 +1,18 @@
-<div class="w-1/2">
-  <div>
-    <%= render "shared/user_info" %>
+<div class="flex flex-row space-x-10">
+  <div class="flex flex-col">
+    <div>
+      <%= render "shared/user_info" %>
+    </div>
+    <div>
+      <%= render "shared/micropost_form" %>
+    </div>
   </div>
   <div>
-    <%= render "shared/micropost_form" %>
+    <h3 class="font-semibold text-xl">Micropost Feed</h3>
+    <% if @feed_items.any? %>
+      <%= render "shared/feed" %>
+    <% else %>
+      <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>
+    <% end %>
   </div>
 </div>

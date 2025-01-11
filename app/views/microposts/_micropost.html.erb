@@ -1,7 +1,10 @@
 <li id="micropost-<%= micropost.id %>">
   <div class="flex flex-row items-center py-2">
     <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-    <div class="flex flex-col pl-4 w-full">
+    <div class="flex flex-col pl-5 w-full">
+      <span class="font-bold text-xs text-blue-700">
+        <%= link_to micropost.user.name, micropost.user %>
+      </span>
       <span>
         <%= micropost.content %>
       </span>
