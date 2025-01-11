@@ -19,10 +19,16 @@ User.create!(name:                  "example-user",
   name = Faker::Name.name
   email = "example-#{n+1}@example.com"
   password = "password"
-  User.create!(name:                  name,
-               email:                 email,
-               password:              password,
-               password_confirmation: password,
-               activated:             true,
-               activated_at:          Time.zone.now)
+  user = User.create!(
+    name:                  name,
+    email:                 email,
+    password:              password,
+    password_confirmation: password,
+    activated:             true,
+    activated_at:          Time.zone.now)
+  3.times do |n|
+    user.microposts.create!(
+      content: Faker::Lorem.sentence(word_count: 5)
+    )
+  end
 end
