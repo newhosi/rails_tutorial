@@ -1,0 +1,8 @@
+<div class="flex flex-row items-center">
+  <div><%= link_to gravatar_for(current_user, size: 50), current_user%></div>
+  <div class="flex flex-col pl-4">
+    <h3 class="font-semibold"><%= current_user.name %></h3>
+    <div class="font-normal underline text-sky-700 text-sm"><%= link_to "view my profile", current_user %></div>
+    <div class="font-light text-xs"><%= pluralize(current_user.microposts.count, "micropost") %></div>
+  </div>
+</div>
