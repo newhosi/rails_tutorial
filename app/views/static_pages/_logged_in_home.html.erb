@@ -9,7 +9,7 @@
   </div>
   <div>
     <h3 class="font-semibold text-xl">Micropost Feed</h3>
-    <% if @feed_items.any? %>
+    <% if !@feed_items.empty? %>
       <%= render "shared/feed" %>
     <% else %>
       <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>

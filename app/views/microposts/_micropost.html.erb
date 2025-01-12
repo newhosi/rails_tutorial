@@ -8,9 +8,27 @@
       <span>
         <%= micropost.content %>
       </span>
-      <span class="font-light	text-xs">
-        Posted <%= time_ago_in_words(micropost.created_at) %> ago
-      </span>
+      <div class="flex flex-row justify-between items-center">
+        <span class="font-light	text-xs">
+          Posted <%= time_ago_in_words(micropost.created_at) %> ago
+        </span>
+        <% if current_user?(micropost.user) %>
+          <div>
+            <%= link_to micropost, data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="size-3.5 text-red-500 hover:text-red-800"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </li>
