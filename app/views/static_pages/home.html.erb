@@ -1,17 +1,6 @@
 <% provide(:title, "Home") %>
-<div class="flex flex-row space-x-6 justify-center">
-  <%= link_to image_tag("rails.png", alt: "Rails logo"),'http://rubyonrails.org/' %>
-  <div class="flex flex-col justify-center">
-    <h1 class="underline font-semibold text-xl mb-2">Welcome to the Sample App</h1>
-    <p>
-      This is the home page for the
-      <a href="https://railstutorial.jp/" class="underline text-sky-700">
-        Ruby on Rails Tutorial
-      </a>
-      sample application.
-    </p>
-    <div class="mt-1 underline">
-      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    </div>
-  </div>
-</div>
+<% if logged_in? %>
+  <%= render "static_pages/logged_in_home" %>
+<% else %>
+  <%= render "static_pages/non_logged_in_home" %>
+<% end %>

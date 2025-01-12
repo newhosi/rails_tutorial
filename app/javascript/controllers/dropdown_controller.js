@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["menu", "button"];
 
-  // TODO: delete console logs comments
   connect() {
     console.log("Dropdown controller connected");
   }
