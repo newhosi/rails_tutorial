@@ -446,6 +446,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  mini_magick (~> 4.13)
   minitest
   minitest-reporters
   pagy
