@@ -7,6 +7,11 @@ data: {turbo: false } do |f| %>
       <%= f.text_area :content, placeholder: "create post..", class: "text-xs w-full"%>
     </div>
 
+    <div class="flex flex-col w-full" data-controller="microposts">
+      <%= f.file_field :picture, id: "micropost_picture", accept: "image/jpeg,image/gif,image/png", 
+      data: { microposts_target: "fileInput", action: "change->microposts#checkFileSize"}%>
+    </div>
+
     <div class="flex flex-col w-full">
       <%= f.submit "Post", class: "text-white rounded p-1 bg-sky-300 hover:bg-sky-500" %>
     </div>
