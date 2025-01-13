@@ -7,7 +7,7 @@ User.create!(name:                  "example-user",
              activated:             true,
              activated_at:          Time.zone.now)
 
-99.times do |n|
+49.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@example.com"
   password = "password"
@@ -25,6 +25,16 @@ User.create!(name:                  "example-user",
     )
   end
 end
+
+# microposts
+users = User.all
+users.each { |user|
+  3.times do |n|
+    user.microposts.create!(
+      content: Faker::Lorem.sentence(word_count: 5)
+    )
+  end
+}
 
 # relationships
 users = User.all
