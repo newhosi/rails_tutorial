@@ -90,7 +90,7 @@ GEM
       racc
     builder (3.3.0)
     byebug (11.1.3)
-    carrierwave (3.1.0)
+    carrierwave (3.1.1)
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       addressable (~> 2.6)
@@ -99,7 +99,7 @@ GEM
       ssrf_filter (~> 1.0)
     coderay (1.1.3)
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crass (1.0.6)
     date (3.4.1)
     debug (1.10.0)
@@ -176,7 +176,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.4)
+    logger (1.6.5)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -438,7 +438,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   byebug
-  carrierwave (~> 3.0)
+  carrierwave (~> 3.1)
   debug
   faker
   guard

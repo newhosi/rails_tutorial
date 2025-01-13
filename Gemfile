@@ -50,7 +50,7 @@ gem "faker"
 
 gem "pagy"
 
-gem "carrierwave", "~> 3.0"
+gem "carrierwave", "~> 3.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
