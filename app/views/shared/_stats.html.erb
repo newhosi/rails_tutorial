@@ -6,6 +6,6 @@
   </div>
   <div>
     <%= link_to "followers", followers_user_path(@user), class: "pl-4" %>
-    <%= @user.followers.count %>
+    <%= followers ||= @user.followers.count %>
   </div>
 </div>

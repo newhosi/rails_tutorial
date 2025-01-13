@@ -5,11 +5,8 @@
       <div><%= gravatar_for @user %></div>
       <div class="pl-4 font-medium"><%= @user.name %></div>
     </div>
-    <div class="pt-3">
-      <%= render "shared/stats" %>
-    </div>
     <div>
-      <%= render "follow_form" if logged_in? %>
+      <%= render "follow_form", locals: { user: @user } if logged_in? %>
     </div>
   </div>
   <div class="col-span-2 flex flex-col space-y-4">
