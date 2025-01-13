@@ -1,0 +1,11 @@
+<% @user ||= current_user %>
+<div class="flex flex-row space-x-4 text-gray-500 text-xs font-bold divide-x justify-center">
+  <div>
+    <%= link_to "following", following_user_path(@user) %>
+    <%= @user.following.count %>
+  </div>
+  <div>
+    <%= link_to "followers", followers_user_path(@user), class: "pl-4" %>
+    <%= @user.followers.count %>
+  </div>
+</div>
