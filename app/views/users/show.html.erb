@@ -1,14 +1,19 @@
 <% provide(:title, @user.name) %>
-<div class="flex flex-row space-x-20">
-  <div class="flex flex-col space-y-2">
-    <div class="flex flex-row items-top">
-      <div><%= gravatar_for @user %></div>
-      <div class="pl-4 font-medium"><%= @user.name %></div>
-    </div>
-    <div>
+<div class="flex flex-col space-y-10 h-full w-full self-start p-20 divide-y">
+
+  <div class="flex flex-row space-x-10 justify-center">
+    <div><%= gravatar_for @user %></div>
+    <div class="flex flex-col justify-start">
+      <div class="font-medium">
+        <%= @user.name %>
+        <%# TODO: add update profile button %>
+      </div>
       <%= render "follow_form", locals: { user: @user } if logged_in? %>
     </div>
   </div>
+
+  <%# TODO: create navigation (with photo, only text, all) %>
+
   <div class="col-span-2 flex flex-col space-y-4">
     <% if @user.microposts.any? %>
       <h3 class="font-medium underline">Microposts (<%= @user.microposts.count %>)</h3>
@@ -22,4 +27,5 @@
       <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>
     <% end %>
   </div>
+
 </div>
