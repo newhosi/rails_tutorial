@@ -1,8 +1,8 @@
 <% provide(:title, "All users") %>
-<div class="w-1/2">
+<div class="flex flex-col space-y-10 h-full w-full self-start p-20">
   <div class="flex text-2xl underline text-center justify-center">All users</div>
-  <ul class="flex flex-col w-full divide-y divide-gray-200">
-    <%# @users.each do |user| %> <%# render user %> <%# end %> <%= render @users %>
+  <ul class="flex flex-col w-full divide-y">
+    <%= render @users %>
   </ul>
 
   <div class="mt-10 space-y-1">
