@@ -1,16 +1,10 @@
-<div class="flex flex-row space-x-20">
-  <div class="flex flex-col">
-    <div>
-      <%= render "shared/user_info" %>
-    </div>
-    <div class="pt-3">
-      <%= render "shared/stats" %>
-    </div>
-    <div>
-      <%= render "shared/micropost_form" %>
-    </div>
+<div class="flex flex-row space-x-10 h-full w-full self-start p-20">
+  <div class="flex flex-col space-y-2">
+    <%= render "shared/user_info" %>
+    <%= render "shared/stats" %>
+    <%= render "shared/micropost_form" %>
   </div>
-  <div>
+  <div class="w-full">
     <h3 class="font-semibold text-xl">Micropost Feed</h3>
     <% if !@feed_items.empty? %>
       <%= render "shared/feed" %>

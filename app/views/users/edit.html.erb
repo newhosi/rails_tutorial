@@ -1,10 +1,12 @@
-<% provide(:title, 'Edit user') %> <% provide(:action_type, user_path) %> <% provide(:button_text,
-"Save changes") %>
-<div class="w-1/2">
-  <div class="flex text-2xl underline text-center justify-center">Update your profile</div>
+<% provide(:title, 'Edit user') %>
+<% provide(:action_type, user_path) %>
+<% provide(:button_text,"Save changes") %>
+<div class="flex flex-col justify-center items-center border border-slate-200 shadow-md rounded w-96 py-9">
+  <div class="flex text-2xl underline text-center justify-center mb-4">Update your profile</div>
   <%= render 'form' %>
-  <div class="flex flex-row w-full space-x-2">
+  <div class="flex flex-row w-full space-x-2 px-12 mt-4">
     <%= gravatar_for @user %>
+    <%# TODO: change button not work.. %>
     <a
       rel="noopener"
       href="http://gravatar.com/emails"

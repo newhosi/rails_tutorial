@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render 'layouts/rails_default' %> <%= render 'layouts/shim' %><%= render 'layouts/header' %>
-    <!-- TODO: title 태크 어따 쓰는지 잘 모르겠으니 찾아볼것.-->
     <title><%= full_title(yield(:title)) %></title>
+    <%= render 'layouts/rails_default' %>
   </head>
-  <body>
+
+  <body class="min-h-screen flex flex-col">
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+
     <%= render 'layouts/flash' %>
-    <div class="flex justify-center m-6"><%= yield %></div>
+
+    <main class="flex flex-grow items-center justify-center">
+      <%= yield %>
+    </main>
+
+    <footer>
+      <%= render 'layouts/footer' %>
+      <div class="bg-slate-200 m-5 p-5 rounded">
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+    </footer>
   </body>
 
-  <footer>
-    <%= render 'layouts/footer' %>
-    <hr />
-    <%= debug(params) if Rails.env.development? %>
-  </footer>
 </html>
