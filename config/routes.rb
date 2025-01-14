@@ -34,4 +34,7 @@ Rails.application.routes.draw do
 
   # relationships
   resources :relationships, only: [ :create, :destroy ]
+
+  # likes
+  resources :likes, only: [ :create, :destroy ]
 end
