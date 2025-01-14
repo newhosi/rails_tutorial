@@ -11,19 +11,27 @@ Rails.application.routes.draw do
   # users
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
-  resources :users
+  resources :users do
+    member do
+      get :following
+      get :followers
+    end
+  end
 
-  ## sessions
+  # sessions
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  ## account activation
+  # account activation
   resources :account_activations, only: [ :edit ]
 
-  ## password reset
+  # password reset
   resources :password_resets, only: [ :new, :create, :edit, :update ]
 
-  ## microposts
+  # microposts
   resources :microposts, only: [ :create, :destroy ]
+
+  # relationships
+  resources :relationships, only: [ :create, :destroy ]
 end

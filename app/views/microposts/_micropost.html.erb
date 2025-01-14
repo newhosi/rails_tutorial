@@ -8,7 +8,7 @@
         </span>
         <% if current_user?(micropost.user) %>
           <div>
-            <%= link_to micropost, data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
+            <%= link_to micropost, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

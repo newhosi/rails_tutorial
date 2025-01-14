@@ -1,0 +1,14 @@
+<turbo-frame id="follow_button">
+  <div class="py-2">
+    <%= render "shared/stats" %>
+  </div>
+  <% unless current_user?(@user) %>
+    <div>
+      <% if current_user.following?(@user) %>
+        <%= render "unfollow", user: @user %>
+      <% else %>
+        <%= render "follow", user: @user %>
+      <% end %>
+    </div>
+  <% end %>
+</turbo-frame>
