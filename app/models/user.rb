@@ -91,6 +91,14 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def like(post)
+    liked_posts << post
+  end
+
+  def unlike(post)
+    likes.find_by(micropost_id: post.id, user_id: id).destroy
+  end
+
   class << self
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
