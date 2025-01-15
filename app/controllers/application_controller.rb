@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
+  include Error::ErrorHandler
   include SessionsHelper
-
   include Pagy::Backend
 
   private
