@@ -1,7 +1,15 @@
-<div>
-  <% flash.each do |message_type, message| %> <% if message.present? %> <% style_classes = {
-  "success" => "bg-green-300", "danger" => "bg-red-300", "info" => "bg-blue-300" } %> <% css_class =
-  style_classes[message_type] %> <% if css_class %>
-  <div class="flex justify-center m-6 <%= css_class %> p-4 rounded text-white"><%= message %></div>
-  <% end %> <% end %> <% end %>
-</div>
+<% flash.each do |message_type, message| %>
+  <% if message.present? %>
+    <% style_classes = {
+        "success" => "bg-green-400", 
+        "danger"  => "bg-red-500", 
+        "info"    => "bg-blue-400",  
+        "alert"   => "bg-yellow-400" }%>
+    <% css_class = style_classes[message_type] %>
+    <% if css_class %>
+      <div class="flex justify-center m-6 <%= css_class %> p-4 rounded text-white">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
