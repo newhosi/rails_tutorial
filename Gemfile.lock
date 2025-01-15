@@ -90,7 +90,7 @@ GEM
       racc
     builder (3.3.0)
     byebug (11.1.3)
-    carrierwave (3.1.0)
+    carrierwave (3.1.1)
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       addressable (~> 2.6)
@@ -439,7 +439,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   byebug
-  carrierwave (~> 3.0)
+  carrierwave (~> 3.1)
   debug
   faker
   guard
