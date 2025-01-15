@@ -4,6 +4,8 @@ module Error
     def self.included(clazz)
       clazz.class_eval do
         rescue_from ActiveRecord::RecordNotFound, with: :respond
+        rescue_from StandardError, with: :respond
+        # TODO: Using StandardError makes it difficult to provide specific messages.
       end
     end
 
