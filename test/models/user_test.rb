@@ -118,4 +118,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not user.feed.include?(post_following)
     end
   end
+
+  test "should return true if the current user liked the post" do
+    @post = microposts(:orange)
+    @user.like(@post)
+    assert @user.liking?(@post)
+  end
+
+  test "should return false if the current user did not like the post" do
+    @post = microposts(:orange)
+    assert_not @user.liking?(@post)
+  end
 end
