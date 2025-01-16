@@ -34,6 +34,9 @@
           Posted <%= time_ago_in_words(micropost.created_at) %> ago
         </span>
       </div>
+      <span>
+        <%= render "microposts/like", micropost: micropost %>
+      </span>
     </div>
   </div>
 </li>
