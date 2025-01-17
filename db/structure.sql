@@ -18,7 +18,18 @@ FOREIGN KEY ("followed_id")
 CREATE INDEX "index_relationships_on_follower_id" ON "relationships" ("follower_id") /*application='SampleApp'*/;
 CREATE INDEX "index_relationships_on_followed_id" ON "relationships" ("followed_id") /*application='SampleApp'*/;
 CREATE UNIQUE INDEX "index_relationships_on_follower_id_and_followed_id" ON "relationships" ("follower_id", "followed_id") /*application='SampleApp'*/;
+CREATE TABLE IF NOT EXISTS "likes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "micropost_id" integer NOT NULL, "like_at" datetime(6) DEFAULT CURRENT_TIMESTAMP NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_1e09b5dabf"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_e86cbd10de"
+FOREIGN KEY ("micropost_id")
+  REFERENCES "microposts" ("id")
+);
+CREATE INDEX "index_likes_on_user_id" ON "likes" ("user_id") /*application='SampleApp'*/;
+CREATE INDEX "index_likes_on_micropost_id" ON "likes" ("micropost_id") /*application='SampleApp'*/;
+CREATE UNIQUE INDEX "index_likes_on_user_id_and_micropost_id" ON "likes" ("user_id", "micropost_id") /*application='SampleApp'*/;
 INSERT INTO "schema_migrations" (version) VALUES
+('20250114142325'),
 ('20250112110318'),
 ('20250112100633'),
 ('20250112051921'),

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "like_button_#{@post.id}" do %>
+  <turbo-frame id="like_button_<%= @post.id %>">
+    <%= render partial: "microposts/like", locals: { micropost: @post } %>
+  </turbo-frame>
+<% end %>

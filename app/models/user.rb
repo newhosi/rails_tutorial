@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
@@ -9,6 +10,9 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :micropost
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -85,6 +89,18 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def like(post)
+    liked_posts << post
+  end
+
+  def unlike(post)
+    likes.find_by(micropost_id: post.id, user_id: id).destroy
+  end
+
+  def liking?(post)
+    liked_posts.include?(post)
   end
 
   class << self
