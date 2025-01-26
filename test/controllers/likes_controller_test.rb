@@ -8,14 +8,14 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create when not logged in" do
     assert_no_difference "Like.count" do
-      post likes_path
+      post micropost_likes_path(@micropost)
     end
     assert_redirected_to login_url
   end
 
   test "should redirect destroy when not logged in" do
     assert_no_difference "Like.count" do
-      delete like_path(likes(:one))
+      delete micropost_like_path(@micropost)
     end
     assert_redirected_to login_url
   end
@@ -23,15 +23,15 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test "should create like" do
     log_in_as(@user)
     assert_difference "Like.count", 1 do
-      post likes_path, params: { micropost_id: @micropost.id }
+      post micropost_likes_path(@micropost)
     end
   end
 
   test "should destroy like" do
     log_in_as(@user)
-    like = likes(:one)
+    @user.like(@micropost)
     assert_difference "Like.count", -1 do
-      delete like_path(like)
+      delete micropost_like_path(@micropost)
     end
   end
 end
