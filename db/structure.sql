@@ -25,7 +25,6 @@ CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
 CREATE TABLE IF NOT EXISTS "account_activations" (
   "user_id" integer NOT NULL,
   "activation_digest" varchar NOT NULL,
-  "string" varchar NOT NULL,
   "activated" boolean DEFAULT 0 NOT NULL,
   "activated_at" datetime(6),
   "created_at" datetime(6) NOT NULL,
