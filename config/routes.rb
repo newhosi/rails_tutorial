@@ -30,11 +30,11 @@ Rails.application.routes.draw do
   resources :password_resets, only: [ :new, :create, :edit, :update ]
 
   # microposts
-  resources :microposts, only: [ :create, :destroy ]
+  resources :microposts, only: [ :create, :destroy ] do
+    # likes
+    resources :likes, only: [ :create, :destroy ]
+  end
 
   # relationships
   resources :relationships, only: [ :create, :destroy ]
-
-  # likes
-  resources :likes, only: [ :create, :destroy ]
 end
