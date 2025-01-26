@@ -11,7 +11,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @post = Like.find(params[:id]).micropost
+    @post = Micropost.find(params[:micropost_id])
     current_user.unlike(@post)
     respond_to do |format|
       format.turbo_stream
