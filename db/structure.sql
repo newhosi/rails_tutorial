@@ -1,11 +1,11 @@
+CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
+
 CREATE TABLE IF NOT EXISTS "ar_internal_metadata" (
   "key" varchar NOT NULL PRIMARY KEY,
   "value" varchar,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL
 );
-
-CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
 
 CREATE TABLE IF NOT EXISTS "users" (
   "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -82,22 +82,22 @@ CREATE UNIQUE INDEX "index_relationships_on_follower_id_and_followed_id" ON "rel
 /*application='SampleApp'*/
 ;
 
-CREATE TABLE IF NOT EXISTS "likes" (
+CREATE TABLE IF NOT EXISTS "post_likes" (
   "user_id" integer NOT NULL,
   "micropost_id" integer NOT NULL,
   "like_at" datetime(6) DEFAULT CURRENT_TIMESTAMP NOT NULL,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL,
   PRIMARY KEY ("user_id", "micropost_id"),
-  CONSTRAINT "fk_rails_1e09b5dabf" FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
-  CONSTRAINT "fk_rails_e86cbd10de" FOREIGN KEY ("micropost_id") REFERENCES "microposts" ("id")
+  CONSTRAINT "fk_rails_d07653f350" FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
+  CONSTRAINT "fk_rails_03c43d8061" FOREIGN KEY ("micropost_id") REFERENCES "microposts" ("id")
 );
 
-CREATE INDEX "index_likes_on_user_id" ON "likes" ("user_id")
+CREATE INDEX "index_post_likes_on_user_id" ON "post_likes" ("user_id")
 /*application='SampleApp'*/
 ;
 
-CREATE INDEX "index_likes_on_micropost_id" ON "likes" ("micropost_id")
+CREATE INDEX "index_post_likes_on_micropost_id" ON "post_likes" ("micropost_id")
 /*application='SampleApp'*/
 ;
 
