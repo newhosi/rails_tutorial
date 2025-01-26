@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include Pagy::Backend
 
+  def not_found!
+    raise ActionController::RoutingError, "No route matches #{params[:path]}"
+  end
+
   private
     def logged_in_user
       unless logged_in?

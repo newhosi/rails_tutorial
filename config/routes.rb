@@ -38,4 +38,6 @@ Rails.application.routes.draw do
 
   # relationships
   resources :relationships, only: [ :create, :destroy ]
+
+  match "*path", to: "application#not_found!", via: :all
 end
