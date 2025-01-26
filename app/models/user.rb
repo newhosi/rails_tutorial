@@ -11,8 +11,8 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source: :micropost
+  has_many :post_likes, dependent: :destroy
+  has_many :liked_posts, through: :post_likes, source: :micropost
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -96,7 +96,7 @@ class User < ApplicationRecord
   end
 
   def unlike(post)
-    likes.find_by(micropost_id: post.id, user_id: id).destroy
+    post_likes.find_by(micropost_id: post.id, user_id: id).destroy
   end
 
   def liking?(post)

@@ -1,7 +1,7 @@
 <turbo-frame id="like_button_<%= micropost.id %>">
   <div class="flex flex-row space-x-1 items-center mt-2">
     <% if current_user.liking? micropost %>
-      <%= link_to like_path(id: like_for(current_user, micropost).id),
+      <%= link_to micropost_like_path(micropost),
                   data: { turbo_method: :delete }, 
                   remote: true do %>
         <svg 
@@ -13,7 +13,7 @@
         </svg>
       <% end %>
     <% else %>
-      <%= link_to likes_path(micropost_id: micropost.id), 
+      <%= link_to micropost_likes_path(micropost), 
                   data: { turbo_method: :post }, 
                   remote: true do %>
         <svg 
@@ -26,7 +26,7 @@
       <% end %>
     <% end %>
     <span class="text-gray-500 font-bold text-sm">
-      <%= micropost.likes.count %>
+      <%= micropost.post_likes.count %>
     </span>
   </div>
 </turbo-frame>

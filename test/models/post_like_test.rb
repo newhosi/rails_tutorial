@@ -1,8 +1,8 @@
 require "test_helper"
 
-class LikeTest < ActiveSupport::TestCase
+class PostLikeTest < ActiveSupport::TestCase
   def setup
-    @like = Like.new(user_id: users(:test_user).id,
+    @like = PostLike.new(user_id: users(:test_user).id,
                      micropost_id: microposts(:orange).id)
   end
 
