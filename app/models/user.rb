@@ -55,15 +55,15 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
-  end
+  # def authenticated?(attribute, token)
+  #   digest = send("#{attribute}_digest")
+  #   return false if digest.nil?
+  #   BCrypt::Password.new(digest).is_password?(token)
+  # end
 
-  def activate
-    update_columns(activated: true, activated_at: Time.zone.now)
-  end
+  # def activate
+  #   update_columns(activated: true, activated_at: Time.zone.now)
+  # end
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
