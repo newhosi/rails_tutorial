@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "users" (
   "name" varchar NOT NULL,
   "email" varchar NOT NULL,
   "password_digest" varchar NOT NULL,
-  "remember_digest" varchar NOT NULL,
+  "remember_digest" varchar,
   "admin" boolean DEFAULT 0 NOT NULL,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL
