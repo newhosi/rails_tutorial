@@ -22,20 +22,6 @@ CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
 /*application='SampleApp'*/
 ;
 
-CREATE TABLE IF NOT EXISTS "account_activations" (
-  "user_id" integer NOT NULL,
-  "activation_digest" varchar NOT NULL,
-  "activated" boolean DEFAULT 0 NOT NULL,
-  "activated_at" datetime(6),
-  "created_at" datetime(6) NOT NULL,
-  "updated_at" datetime(6) NOT NULL,
-  CONSTRAINT "fk_rails_d5c3ab979d" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
-);
-
-CREATE INDEX "index_account_activations_on_user_id" ON "account_activations" ("user_id")
-/*application='SampleApp'*/
-;
-
 CREATE TABLE IF NOT EXISTS "password_resets" (
   "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
   "user_id" integer NOT NULL,
@@ -108,6 +94,20 @@ CREATE INDEX "index_post_likes_on_user_id" ON "post_likes" ("user_id")
 ;
 
 CREATE INDEX "index_post_likes_on_micropost_id" ON "post_likes" ("micropost_id")
+/*application='SampleApp'*/
+;
+
+CREATE TABLE IF NOT EXISTS "account_activations" (
+  "user_id" integer NOT NULL,
+  "activation_digest" varchar,
+  "activated" boolean DEFAULT 0 NOT NULL,
+  "activated_at" datetime(6),
+  "created_at" datetime(6) NOT NULL,
+  "updated_at" datetime(6) NOT NULL,
+  CONSTRAINT "fk_rails_d5c3ab979d" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
+);
+
+CREATE INDEX "index_account_activations_on_user_id" ON "account_activations" ("user_id")
 /*application='SampleApp'*/
 ;
 
