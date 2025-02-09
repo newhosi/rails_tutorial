@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
-  include Error::ErrorHandler
+  # TODO: 에러 구분이 잘 가지 않음. 나중에 수정해야할 것 같음.
+  # include Error::ErrorHandler
   include SessionsHelper
   include Pagy::Backend
 

@@ -61,12 +61,7 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
-  def password_reset_expired?
-    reset_sent_at < 2.hours.ago
-  end
-
   def feed
-    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
@@ -95,6 +90,10 @@ class User < ApplicationRecord
 
   def liking?(post)
     liked_posts.include?(post)
+  end
+
+  def latest_password_reset
+    password_resets.order(reset_sent_at: :desc).first
   end
 
   private

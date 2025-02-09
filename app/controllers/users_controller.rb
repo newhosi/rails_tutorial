@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pagy, @microposts = pagy(@user.microposts)
-    redirect_to root_url and return unless @user.activated?
+    redirect_to root_url and return unless @user.account_activation.activated?
   end
 
   def index

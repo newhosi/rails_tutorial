@@ -3,6 +3,8 @@ class PasswordReset < ApplicationRecord
 
   belongs_to :user
 
+  scope :latest, -> { order(reset_sent_at: :desc).first }
+
   attr_accessor :reset_token
 
   def create_reset_digest
@@ -12,6 +14,16 @@ class PasswordReset < ApplicationRecord
 
   def send_password_reset_email
     PasswordResetMailer.password_reset(self).deliver_now
+  end
+
+  def authenticated?(token)
+    digest = send("reset_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 
   class << self
