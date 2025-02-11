@@ -71,12 +71,19 @@ group :development do
   gem "rails_live_reload"
 end
 
-group :test do
-  gem "rails-controller-testing"
-  gem "minitest"
-  gem "minitest-reporters"
-  gem "guard"
-  gem "guard-minitest"
+# group :test do
+#   # gem "rails-controller-testing"
+#   # gem "minitest"
+#   # gem "minitest-reporters"
+#   # gem "guard"
+#   # gem "guard-minitest"
+# end
+
+group :development, :test do
+  gem "factory_bot_rails"
+  gem "rspec-core"
+  gem "rspec-rails", "~> 7.0.0"
+  gem "capybara"
 end
 
 gem "tailwindcss-rails", "~> 3.2"
