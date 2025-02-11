@@ -3,7 +3,7 @@ class PasswordReset < ApplicationRecord
 
   belongs_to :user
 
-  scope :latest, -> { order(reset_sent_at: :desc).first }
+  scope :latest, -> { order(reset_sent_at: :desc) }
 
   attr_accessor :reset_token
 

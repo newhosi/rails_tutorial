@@ -92,10 +92,6 @@ class User < ApplicationRecord
     liked_posts.include?(post)
   end
 
-  def latest_password_reset
-    password_resets.order(reset_sent_at: :desc).first
-  end
-
   private
     def downcase_email
       self.email.downcase!
