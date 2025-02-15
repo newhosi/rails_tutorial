@@ -12,15 +12,33 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password_digest { User.digest('password') }
     admin { false }
-  end
 
-  factory :admin_user, parent: :user do
-    admin { true }
+    trait :admin do
+      admin { true }
+    end
+
+    trait :activate do
+      account_activation { association :account_activation, activated: true }
+    end
+
+    trait :inactivate do
+      account_activation { association :account_activation, activated: false }
+    end
+
+    factory :admin_user, traits: [ :admin ]
+    factory :activate_user, traits: [ :activate ]
+    factory :inactivate_user, traits: [ :inactivate ]
   end
 
   factory :micropost do
     content { "content" }
     created_at { 10.minutes.ago }
+    user
+  end
+
+  factory :account_activation do
+    activated { true }
+    activated_at { Time.zone.now }
     user
   end
 
