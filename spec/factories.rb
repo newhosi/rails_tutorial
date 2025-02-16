@@ -50,8 +50,10 @@ FactoryBot.define do
   end
 end
 
-def user_with_posts(posts_count: 5)
-  FactoryBot.create(:activate_user) do |user|
-    FactoryBot.create_list(:micropost, posts_count, user: user)
+def user_with_posts(posts_count: 5, user: nil)
+  user ||= FactoryBot.create(:activate_user)
+
+  user.tap do |u|
+    FactoryBot.create_list(:micropost, posts_count, user: u)
   end
 end
