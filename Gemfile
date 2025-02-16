@@ -84,6 +84,7 @@ group :development, :test do
   gem "rspec-core"
   gem "rspec-rails", "~> 7.0.0"
   gem "capybara"
+  gem "rails-controller-testing"
 end
 
 gem "tailwindcss-rails", "~> 3.2"
