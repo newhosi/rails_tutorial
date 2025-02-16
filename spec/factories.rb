@@ -39,6 +39,7 @@ FactoryBot.define do
   factory :account_activation do
     activated { true }
     activated_at { Time.zone.now }
+    activation_digest { AccountActivation.digest('token') }
     user
   end
 

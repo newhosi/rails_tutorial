@@ -1,4 +1,6 @@
 class AccountActivation < ApplicationRecord
+  include TokenGeneratable
+
   self.primary_key = "user_id"
   belongs_to :user
 
