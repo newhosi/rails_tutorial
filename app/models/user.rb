@@ -92,6 +92,12 @@ class User < ApplicationRecord
     liked_posts.include?(post)
   end
 
+  def authenticated?(token)
+    digest = send("remember_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
   private
     def downcase_email
       self.email.downcase!
