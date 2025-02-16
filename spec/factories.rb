@@ -25,7 +25,7 @@ FactoryBot.define do
       account_activation { association :account_activation, activated: false }
     end
 
-    factory :admin_user, traits: [ :admin ]
+    factory :admin_user, traits: [ :admin, :activate ]
     factory :activate_user, traits: [ :activate ]
     factory :inactivate_user, traits: [ :inactivate ]
   end
@@ -51,7 +51,7 @@ FactoryBot.define do
 end
 
 def user_with_posts(posts_count: 5)
-  FactoryBot.create(:user) do |user|
+  FactoryBot.create(:activate_user) do |user|
     FactoryBot.create_list(:micropost, posts_count, user: user)
   end
 end

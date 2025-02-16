@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @pagy, @users = pagy(User.where(activated: true))
+    @pagy, @users = pagy(User.joins(:account_activation).where(account_activations: { activated: true }))
   end
 
   def new

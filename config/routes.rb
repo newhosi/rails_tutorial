@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # users
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
-  resources :users do
+  resources :users, only: [ :index, :new, :edit, :show, :update, :destroy ] do
     member do
       get :following
       get :followers
