@@ -1,7 +1,0 @@
-one:
-  follower: admin_user
-  followed: active_user
-
-two:
-  follower: active_user
-  followed: admin_user
