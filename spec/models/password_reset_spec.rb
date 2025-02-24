@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: password_resets
+#
+#  id            :integer          not null, primary key
+#  reset_digest  :string           not null
+#  reset_sent_at :datetime         not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :integer          not null
+#
+# Indexes
+#
+#  index_password_resets_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
+#
 require 'rails_helper'
 
 RSpec.describe PasswordReset, type: :model do
