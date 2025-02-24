@@ -18,7 +18,7 @@
 #  user_id  (user_id => users.id)
 #
 class PasswordReset < ApplicationRecord
-  include TokenGeneratable
+  include TokenAuthenticatable
 
   belongs_to :user
 
@@ -33,12 +33,6 @@ class PasswordReset < ApplicationRecord
 
   def send_password_reset_email
     PasswordResetMailer.password_reset(self).deliver_now
-  end
-
-  def authenticated?(token)
-    digest = send("reset_digest")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def password_reset_expired?

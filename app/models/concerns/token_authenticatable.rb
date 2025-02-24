@@ -1,5 +1,13 @@
-module TokenGeneratable
+module TokenAuthenticatable
   extend ActiveSupport::Concern
+
+  included do
+    def authenticated?(type, token)
+      digest = send(type)
+      return false if digest.nil?
+      BCrypt::Password.new(digest).is_password?(token)
+    end
+  end
 
   class_methods do
     def digest(string)

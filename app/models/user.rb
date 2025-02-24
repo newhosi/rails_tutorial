@@ -17,7 +17,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
-  include TokenGeneratable
+  include TokenAuthenticatable
 
   has_many :microposts, dependent: :destroy
 
@@ -67,8 +67,12 @@ class User < ApplicationRecord
   def create_with_activation
     self.activation_token = self.class.new_token
     digest = self.class.digest(activation_token)
-    build_account_activation(activation_digest: digest, activated: false)
+    build_account_activation(activation_digest: digest)
     save!
+  end
+
+  def activate
+    update_columns(activated: true)
   end
 
   def forget
@@ -108,12 +112,6 @@ class User < ApplicationRecord
 
   def liking?(post)
     liked_posts.include?(post)
-  end
-
-  def authenticated?(token)
-    digest = send("remember_digest")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
   end
 
   private
