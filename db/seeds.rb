@@ -1,23 +1,26 @@
 # users
-User.create!(name:                  "example-user",
-             email:                 "example-user@example.com",
+admin = User.new(
+             name:                  "admin",
+             email:                 "admin@example.com",
              password:              "password",
              password_confirmation: "password",
-             admin:                 true,
-             activated:             true,
-             activated_at:          Time.zone.now)
+             admin:                 true)
+
+admin.build_account_activation(activated: true, activated_at: Time.zone.now)
+admin.save!
 
 49.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@example.com"
   password = "password"
-  user = User.create!(
+  user = User.new(
     name:                  name,
     email:                 email,
     password:              password,
-    password_confirmation: password,
-    activated:             true,
-    activated_at:          Time.zone.now)
+    password_confirmation: password)
+  user.build_account_activation(activated: true, activated_at: Time.zone.now)
+  user.save!
+
   3.times do |n|
     # microposts
     user.microposts.create!(
@@ -25,16 +28,6 @@ User.create!(name:                  "example-user",
     )
   end
 end
-
-# microposts
-users = User.all
-users.each { |user|
-  3.times do |n|
-    user.microposts.create!(
-      content: Faker::Lorem.sentence(word_count: 5)
-    )
-  end
-}
 
 # relationships
 users = User.all

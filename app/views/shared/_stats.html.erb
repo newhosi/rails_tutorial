@@ -1,7 +1,6 @@
 <% @user ||= current_user %>
 <div class="flex flex-row space-x-4 text-gray-500 text-xs font-bold divide-x justify-center">
   <div>
-    <%# TODO: {turbo: false} should be fixed later.. %>
     <%= link_to "following", following_user_path(@user), data: { turbo: false } %>
     <%= @user.following.count %>
   </div>

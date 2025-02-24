@@ -1,7 +1,0 @@
-one:
-  follower: seed_user_1
-  followed: test_user
-
-two:
-  follower: test_user
-  followed: seed_user_1

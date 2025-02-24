@@ -11,32 +11,28 @@ CREATE TABLE IF NOT EXISTS "users" (
   "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
   "name" varchar NOT NULL,
   "email" varchar NOT NULL,
-  "created_at" datetime(6) NOT NULL,
-  "updated_at" datetime(6) NOT NULL,
   "password_digest" varchar NOT NULL,
-  "remember_digest" varchar
-  /*application='SampleApp'*/
-,
-  "admin" boolean DEFAULT 0
-  /*application='SampleApp'*/
-,
-  "activation_digest" varchar
-  /*application='SampleApp'*/
-,
-  "activated" boolean DEFAULT 0
-  /*application='SampleApp'*/
-,
-  "activated_at" datetime(6)
-  /*application='SampleApp'*/
-,
-  "reset_digest" varchar
-  /*application='SampleApp'*/
-,
-  "reset_sent_at" datetime(6)
-  /*application='SampleApp'*/
+  "remember_digest" varchar,
+  "admin" boolean DEFAULT 0 NOT NULL,
+  "created_at" datetime(6) NOT NULL,
+  "updated_at" datetime(6) NOT NULL
 );
 
 CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+/*application='SampleApp'*/
+;
+
+CREATE TABLE IF NOT EXISTS "password_resets" (
+  "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+  "user_id" integer NOT NULL,
+  "reset_digest" varchar NOT NULL,
+  "reset_sent_at" datetime(6) NOT NULL,
+  "created_at" datetime(6) NOT NULL,
+  "updated_at" datetime(6) NOT NULL,
+  CONSTRAINT "fk_rails_526379cd99" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
+);
+
+CREATE INDEX "index_password_resets_on_user_id" ON "password_resets" ("user_id")
 /*application='SampleApp'*/
 ;
 
@@ -101,6 +97,20 @@ CREATE INDEX "index_post_likes_on_micropost_id" ON "post_likes" ("micropost_id")
 /*application='SampleApp'*/
 ;
 
+CREATE TABLE IF NOT EXISTS "account_activations" (
+  "user_id" integer NOT NULL,
+  "activation_digest" varchar,
+  "activated" boolean DEFAULT 0 NOT NULL,
+  "activated_at" datetime(6),
+  "created_at" datetime(6) NOT NULL,
+  "updated_at" datetime(6) NOT NULL,
+  CONSTRAINT "fk_rails_d5c3ab979d" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
+);
+
+CREATE INDEX "index_account_activations_on_user_id" ON "account_activations" ("user_id")
+/*application='SampleApp'*/
+;
+
 INSERT INTO
   "schema_migrations" (version)
 VALUES
@@ -109,10 +119,6 @@ VALUES
   ('20250112100633'),
   ('20250112051921'),
   ('20250108135432'),
-  ('20250105090337'),
-  ('20250104080133'),
-  ('20250104031757'),
-  ('20250102064401'),
-  ('20241201130109'),
-  ('20241201124647'),
+  ('20250106113524'),
+  ('20250106113506'),
   ('20241130152645');

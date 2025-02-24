@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pagy, @microposts = pagy(@user.microposts)
-    redirect_to root_url and return unless @user.activated?
+    redirect_to root_url and return unless @user.account_activation.activated?
   end
 
   def index
-    @pagy, @users = pagy(User.where(activated: true))
+    @pagy, @users = pagy(User.joins(:account_activation).where(account_activations: { activated: true }))
   end
 
   def new
@@ -35,13 +35,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    ActiveRecord::Base.transaction do
+      @user.create_with_activation
       @user.send_activation_email
+    end
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
-    else
-      render "new"
-    end
   end
 
   def edit
