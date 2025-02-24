@@ -25,11 +25,11 @@ RSpec.describe AccountActivation, type: :model do
     let!(:account_activation) { AccountActivation.new(activation_digest: digest("token")) }
 
     it "returns true if the given token matches the digest" do
-      expect(account_activation.authenticated?("token")).to be_truthy
+      expect(account_activation.authenticated?("activation_digest", "token")).to be_truthy
     end
 
     it "returns false if the given token does not match the digest" do
-      expect(account_activation.authenticated?("wrong_token")).to be_falsey
+      expect(account_activation.authenticated?("activation_digest", "wrong_token")).to be_falsey
     end
   end
 end

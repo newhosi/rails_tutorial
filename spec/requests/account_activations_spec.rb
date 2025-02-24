@@ -6,7 +6,7 @@ RSpec.describe "AccountActivations", type: :request do
       let!(:user) { create(:inactivate_user) }
       it "should activated" do
         get edit_account_activation_path("token", email: user.email)
-        expect(user.reload.account_activation.activated).to be_truthy
+        expect(user.reload.activated).to be_truthy
         expect(response).to redirect_to(user)
       end
     end
