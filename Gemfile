@@ -87,6 +87,6 @@ group :development, :test do
   gem "rails-controller-testing"
 end
 
-gem "tailwindcss-rails", "~> 3.2"
+gem "tailwindcss-rails", "~> 4.1"
 
 gem "mini_magick", "~> 4.13"
