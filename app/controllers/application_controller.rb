@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     end
 
     def activated_user
-      unless current_user.account_activation.activated?
+      unless current_user.activated?
         flash[:danger] = "Account not activated. Check your email for the activation link."
         redirect_to root_url
       end
