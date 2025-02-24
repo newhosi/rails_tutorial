@@ -69,15 +69,8 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "rails_live_reload"
+  gem "annotaterb"
 end
-
-# group :test do
-#   # gem "rails-controller-testing"
-#   # gem "minitest"
-#   # gem "minitest-reporters"
-#   # gem "guard"
-#   # gem "guard-minitest"
-# end
 
 group :development, :test do
   gem "factory_bot_rails"
