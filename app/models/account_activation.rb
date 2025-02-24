@@ -2,7 +2,6 @@
 #
 # Table name: account_activations
 #
-#  activated         :boolean          default(FALSE), not null
 #  activated_at      :datetime
 #  activation_digest :string
 #  created_at        :datetime         not null

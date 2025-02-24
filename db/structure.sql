@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
-
 CREATE TABLE IF NOT EXISTS "ar_internal_metadata" (
   "key" varchar NOT NULL PRIMARY KEY,
   "value" varchar,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
 
 CREATE TABLE IF NOT EXISTS "users" (
   "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -14,11 +14,25 @@ CREATE TABLE IF NOT EXISTS "users" (
   "password_digest" varchar NOT NULL,
   "remember_digest" varchar,
   "admin" boolean DEFAULT 0 NOT NULL,
+  "activated" boolean DEFAULT 0,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL
 );
 
 CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+/*application='SampleApp'*/
+;
+
+CREATE TABLE IF NOT EXISTS "account_activations" (
+  "user_id" integer NOT NULL,
+  "activation_digest" varchar,
+  "activated_at" datetime(6),
+  "created_at" datetime(6) NOT NULL,
+  "updated_at" datetime(6) NOT NULL,
+  CONSTRAINT "fk_rails_d5c3ab979d" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
+);
+
+CREATE INDEX "index_account_activations_on_user_id" ON "account_activations" ("user_id")
 /*application='SampleApp'*/
 ;
 
@@ -40,11 +54,9 @@ CREATE TABLE IF NOT EXISTS "microposts" (
   "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
   "content" text,
   "user_id" integer NOT NULL,
+  "picture" varchar,
   "created_at" datetime(6) NOT NULL,
   "updated_at" datetime(6) NOT NULL,
-  "picture" varchar
-  /*application='SampleApp'*/
-,
   CONSTRAINT "fk_rails_558c81314b" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
 );
 
@@ -97,27 +109,11 @@ CREATE INDEX "index_post_likes_on_micropost_id" ON "post_likes" ("micropost_id")
 /*application='SampleApp'*/
 ;
 
-CREATE TABLE IF NOT EXISTS "account_activations" (
-  "user_id" integer NOT NULL,
-  "activation_digest" varchar,
-  "activated" boolean DEFAULT 0 NOT NULL,
-  "activated_at" datetime(6),
-  "created_at" datetime(6) NOT NULL,
-  "updated_at" datetime(6) NOT NULL,
-  CONSTRAINT "fk_rails_d5c3ab979d" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
-);
-
-CREATE INDEX "index_account_activations_on_user_id" ON "account_activations" ("user_id")
-/*application='SampleApp'*/
-;
-
 INSERT INTO
   "schema_migrations" (version)
 VALUES
   ('20250114142325'),
-  ('20250112110318'),
   ('20250112100633'),
-  ('20250112051921'),
   ('20250108135432'),
   ('20250106113524'),
   ('20250106113506'),

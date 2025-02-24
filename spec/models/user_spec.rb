@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  activated       :boolean          default(FALSE)
 #  admin           :boolean          default(FALSE), not null
 #  email           :string           not null
 #  name            :string           not null
