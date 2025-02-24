@@ -57,3 +57,11 @@ def user_with_posts(posts_count: 5, user: nil)
     FactoryBot.create_list(:micropost, posts_count, user: u)
   end
 end
+
+def user_with_password_reset(user: nil)
+  user ||= FactoryBot.create(:activate_user)
+
+  user.tap do |u|
+    FactoryBot.create(:password_reset, user: u)
+  end
+end
