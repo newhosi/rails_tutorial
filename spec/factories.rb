@@ -17,17 +17,21 @@ FactoryBot.define do
       admin { true }
     end
 
-    trait :activate do
-      account_activation { association :account_activation, activated: true }
+    trait :activated do
+      activated { true }
     end
 
-    trait :inactivate do
-      account_activation { association :account_activation, activated: false }
+    trait :inactivated do
+      activated { false }
     end
 
-    factory :admin_user, traits: [ :admin, :activate ]
-    factory :activate_user, traits: [ :activate ]
-    factory :inactivate_user, traits: [ :inactivate ]
+    trait :account_activation do
+      account_activation { association :account_activation }
+    end
+
+    factory :admin_user, traits: [ :admin, :activated, :account_activation ]
+    factory :activate_user, traits: [ :activated, :account_activation ]
+    factory :inactivate_user, traits: [ :inactivated, :account_activation ]
   end
 
   factory :micropost do
@@ -37,7 +41,6 @@ FactoryBot.define do
   end
 
   factory :account_activation do
-    activated { true }
     activated_at { Time.zone.now }
     activation_digest { AccountActivation.digest('token') }
     user
