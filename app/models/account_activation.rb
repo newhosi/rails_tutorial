@@ -2,7 +2,6 @@
 #
 # Table name: account_activations
 #
-#  activated         :boolean          default(FALSE), not null
 #  activated_at      :datetime
 #  activation_digest :string
 #  created_at        :datetime         not null
@@ -18,18 +17,12 @@
 #  user_id  (user_id => users.id)
 #
 class AccountActivation < ApplicationRecord
-  include TokenGeneratable
+  include TokenAuthenticatable
 
   self.primary_key = "user_id"
   belongs_to :user
 
-  def authenticated?(token)
-    digest = send("activation_digest")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
-  end
-
   def activate
-    update_columns(activated: true, activated_at: Time.zone.now)
+    update_columns(activated_at: Time.zone.now)
   end
 end

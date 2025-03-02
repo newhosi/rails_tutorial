@@ -4,9 +4,10 @@ admin = User.new(
              email:                 "admin@example.com",
              password:              "password",
              password_confirmation: "password",
-             admin:                 true)
+             admin:                 true,
+             activated:             true)
 
-admin.build_account_activation(activated: true, activated_at: Time.zone.now)
+admin.build_account_activation(activated_at: Time.zone.now)
 admin.save!
 
 49.times do |n|
@@ -17,8 +18,9 @@ admin.save!
     name:                  name,
     email:                 email,
     password:              password,
-    password_confirmation: password)
-  user.build_account_activation(activated: true, activated_at: Time.zone.now)
+    password_confirmation: password,
+    activated:             true)
+  user.build_account_activation(activated_at: Time.zone.now)
   user.save!
 
   3.times do |n|

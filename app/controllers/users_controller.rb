@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pagy, @microposts = pagy(@user.microposts)
-    redirect_to root_url and return unless @user.account_activation.activated?
+    redirect_to root_url and return unless @user.activated?
   end
 
   def index
-    @pagy, @users = pagy(User.joins(:account_activation).where(account_activations: { activated: true }))
+    @pagy, @users = pagy(User.where(activated: true))
   end
 
   def new

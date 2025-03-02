@@ -26,11 +26,11 @@ RSpec.describe PasswordReset, type: :model do
     let!(:password_reset) { PasswordReset.new(reset_digest: digest("token")) }
 
     it "returns true if the given string matches the digest" do
-      expect(password_reset.authenticated?("token")).to be_truthy
+      expect(password_reset.authenticated?("reset_digest", "token")).to be_truthy
     end
 
     it "returns false if the given string does not match the digest" do
-      expect(password_reset.authenticated?("invalid_token")).to be_falsey
+      expect(password_reset.authenticated?("reset_digest", "invalid_token")).to be_falsey
     end
   end
 

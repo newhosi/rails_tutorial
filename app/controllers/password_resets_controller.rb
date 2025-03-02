@@ -15,6 +15,7 @@ class PasswordResetsController < ApplicationController
       password_reset = PasswordReset.build_for(@user)
       password_reset.save!
       password_reset.send_password_reset_email
+      @user.update!(activated: false)
       flash[:info] = "Email sent with password reset instructions."
       redirect_to root_url
     end
@@ -50,7 +51,7 @@ class PasswordResetsController < ApplicationController
     end
 
     def valid_user
-      unless @user && @user.account_activation.activated? && @user.password_resets.latest.first.authenticated?(params[:id])
+      unless @user && @user.activated? && @user.password_resets[0].authenticated?("reset_digest", params[:id])
         redirect_to root_url
       end
     end
