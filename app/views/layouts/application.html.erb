@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/rails_default' %>
   </head>
 
-  <body class="min-h-screen flex flex-col">
-    <header>
-      <%= render 'layouts/header' %>
-    </header>
+  <body class="h-full flex flex-col">
+    <div class="fixed left-0 top-0 h-full w-64">
+      <%= render 'layouts/sidebar' %>
+    </div>
 
     <%= render 'layouts/flash' %>
 
-    <main class="flex flex-grow items-center justify-center">
+    <main class="flex flex-grow items-center justify-center ml-64">
       <%= yield %>
     </main>
 
-    <footer>
+    <footer class="ml-64">
       <%= render 'layouts/footer' %>
       <div class="bg-slate-200 m-5 p-5 rounded">
         <%= debug(params) if Rails.env.development? %>
       </div>
     </footer>
   </body>
-
 </html>
