@@ -39,9 +39,10 @@
     <% when "posts" %>
       <%= render "users/posts", locals: { microposts: @microposts, page: @page } %>
     <% when "saved" %>
-      <%= render "users/saved" %>
+      <%# TODO: need to create saved and tagged page %>
+      <%= render "users/posts" %>
     <% when "tagged" %>
-      <%= render "users/tagged" %>
+      <%= render "users/posts" %>
     <% end %>
   </div>
 </div>
