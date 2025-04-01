@@ -1,11 +1,12 @@
 <div id="micropost-<%= micropost.id %>" data-controller="modal">
   <div data-action="click->modal#open" class="relative group flex flex-row items-top border p-4 rounded-lg">
-    <span class="font-light	text-xs">
+    <div class="font-light text-xs min-h-32 flex flex-col">
       Posted <%= time_ago_in_words(micropost.created_at) %> ago
-    </span>
+    </div>
     <div class="absolute inset-0 bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 bg-gray-100 transition">
-      <span>
-        <%= render "microposts/like", micropost: micropost %>
+      <span> 
+        <%# 하트가 아니라, 댓글 수 로 바꿀 것 %>
+        <%= render "microposts/like", micropost: micropost %> 
       </span>
     </div>
   </div>
