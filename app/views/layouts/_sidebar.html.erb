@@ -43,12 +43,12 @@
             <span>Write</span>
           <% end %>
         </li>
+        <div>
+          <%= render 'layouts/dropdown' %>
+        </div>
       <% end %>
     </ul>
     <ul>
-      <div>
-        <%= render 'layouts/dropdown' %>
-      </div>
       <% if !logged_in? %>
         <li class="hover:bg-gray-800 rounded-md mx-2 p-3">
           <%= link_to(login_path, class: "flex flex-row space-x-3" ) do %>
