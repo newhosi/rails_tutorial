@@ -471,7 +471,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_live_reload
   rspec-core
-  rspec-rails (~> 7.1.1)
+  rspec-rails (~> 7.1)
   rubocop-rails-omakase
   solid_cable
   solid_cache
