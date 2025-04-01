@@ -10,9 +10,10 @@
       <%= render 'layouts/sidebar' %>
     </div>
 
-    <%= render 'layouts/flash' %>
-
-    <main class="flex flex-grow items-center justify-center ml-64">
+    <main class="flex flex-grow flex-col items-center justify-center ml-64">
+      <div class="w-full mx-6">
+        <%= render 'layouts/flash' %>
+      </div>
       <%= yield %>
     </main>
 
