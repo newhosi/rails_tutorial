@@ -2,11 +2,11 @@
 #
 # Table name: relationships
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  followed_id :integer          not null
-#  follower_id :integer          not null
+#  followed_id :bigint           not null
+#  follower_id :bigint           not null
 #
 # Indexes
 #
@@ -16,8 +16,8 @@
 #
 # Foreign Keys
 #
-#  followed_id  (followed_id => users.id) ON DELETE => cascade
-#  follower_id  (follower_id => users.id) ON DELETE => cascade
+#  fk_rails_...  (followed_id => users.id) ON DELETE => cascade
+#  fk_rails_...  (follower_id => users.id) ON DELETE => cascade
 #
 require 'rails_helper'
 
