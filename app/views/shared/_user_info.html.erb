@@ -1,8 +1,17 @@
-<div class="flex flex-row items-center">
-  <div><%= link_to gravatar_for(current_user, size: 50), current_user%></div>
-  <div class="flex flex-col pl-4">
-    <h3 class="font-semibold"><%= current_user.name %></h3>
-    <div class="font-normal underline text-sky-700 text-sm"><%= link_to "view my profile", current_user %></div>
-    <div class="font-light text-xs"><%= pluralize(current_user.microposts.count, "micropost") %></div>
+<div class="flex flex-row items-center space-x-7">
+  <div><%= link_to gravatar_for(@user, size: 100), @user%></div>
+  <div class="flex flex-col justify-start space-y-3">
+    <h3 class="font-semibold text-2xl"><%= @user.name %></h3>
+    <div class="flex flex-row text-gray-500 text-xs font-bold space-x-4">
+      <div><%= pluralize(@user.microposts.count, "micropost") %></div>
+      <div>
+        <%= @user.following.count %>
+        <%= link_to "following", following_user_path(@user), data: { turbo: false } %>
+      </div>
+      <div>
+        <%= followers ||= @user.followers.count %>
+        <%= link_to "followers", followers_user_path(@user), data: { turbo: false } %>
+      </div>
+    </div>
   </div>
 </div>

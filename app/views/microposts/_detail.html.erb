@@ -1,0 +1,35 @@
+<%= render "shared/modal", id: "modal-#{micropost.id}" do %>
+  <div class="flex flex-row w-full h-full">
+    <span>
+      <%= image_tag micropost.picture.url if !micropost.picture.url.nil? %>
+    </span>
+    <div class="flex flex-col px-6 h-full w-full divide-y">
+      <div class="flex flex-row justify-between items-center py-6">
+        <div class="flex flex-row justify-between items-center space-x-3">
+          <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+          <span class="font-bold text-xs text-blue-700">
+            <%= link_to micropost.user.name, micropost.user %>
+          </span>
+        </div>
+        <% if current_user?(micropost.user) %>
+          <div>
+            <%= link_to micropost, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-3.5 text-red-500 hover:text-red-800">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <span class="py-6 grow">
+        <%= micropost.content %>
+      </span>
+      <div class="py-6">
+        <%= render "microposts/like", micropost: micropost %>
+      </div>
+      <div class="border-t">
+        comment
+      </div>
+    </div>
+  </div>
+<% end %>

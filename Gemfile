@@ -75,12 +75,12 @@ end
 group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-core"
-  gem "rspec-rails", "~> 7.1.1"
+  gem "rspec-rails", "~> 7.1"
   gem "capybara"
   gem "rails-controller-testing"
   gem "dotenv-rails"
 end
 
-gem "tailwindcss-rails", "~> 3.2"
+gem "tailwindcss-rails", "~> 3.0"
 
 gem "mini_magick", "~> 5.2"

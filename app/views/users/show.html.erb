@@ -1,31 +1,48 @@
-<% provide(:title, @user.name) %>
-<div class="flex flex-col space-y-10 h-full w-full self-start p-20 divide-y">
-
-  <div class="flex flex-row space-x-10 justify-center">
-    <div><%= gravatar_for @user %></div>
-    <div class="flex flex-col justify-start">
-      <div class="font-medium">
-        <%= @user.name %>
-        <%# TODO: add update profile button %>
-      </div>
-      <%= render "follow_form", locals: { user: @user } if logged_in? %>
+<div class="flex flex-col space-y-10 h-full w-full p-20">
+  <div class="flex flex-row">
+    <%= render "shared/user_info", locals: { user: @user} %>
+    <div class="pl-10">
+      <%= render "users/follow_form", locals: { user: @user } if logged_in? %>
     </div>
   </div>
-
-  <%# TODO: create navigation (with photo, only text, all) %>
-
-  <div class="col-span-2 flex flex-col space-y-4">
-    <% if @user.microposts.any? %>
-      <h3 class="font-medium underline">Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="divide-y divide-gray-200">
-        <%= render @microposts %>
-      </ol>
-      <div class="mt-10 space-y-1">
-        <%== pagy_nav(@pagy) if @pagy.pages > 1 %> <%== pagy_info(@pagy) %>
-      </div>
-    <% else %>
-      <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>
+  <div class="border-t border-gray-300">
+    <ul class="flex justify-center space-x-12 text-sm font-medium">
+      <% current_tab = params[:tab] || "posts" %>
+      <li class="<%= current_tab == "posts" ? "border-t-2 border-black text-black" : "hover:text-blue-500" %> pt-2">
+        <%= link_to(user_path(tab: "posts"), class: "space-x-1 flex flex-row items-center") do%>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+          </svg>
+          <span>posts</span>
+        <% end %>
+      </li>
+      <li class="<%= current_tab == "saved" ? "border-t-2 border-black text-black" : "hover:text-blue-500" %> pt-2">
+        <%= link_to(user_path(tab: "saved"), class: "space-x-1 flex flex-row") do%>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+          </svg>
+          <span>saved</span>
+        <% end %>
+      </li>
+      <li class="<%= current_tab == "tagged" ? "border-t-2 border-black text-black" : "hover:text-blue-500" %> pt-2">
+        <%= link_to(user_path(tab: "tagged"), class: "space-x-1 flex flex-row") do%>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+          </svg>
+          <span>tagged</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <% case current_tab %>
+    <% when "posts" %>
+      <%= render "users/posts", locals: { microposts: @microposts, page: @page } %>
+    <% when "saved" %>
+      <%# TODO: need to create saved and tagged page %>
+      <%= render "users/posts" %>
+    <% when "tagged" %>
+      <%= render "users/posts" %>
     <% end %>
   </div>
-
 </div>

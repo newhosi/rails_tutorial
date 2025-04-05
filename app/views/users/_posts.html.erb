@@ -1,0 +1,8 @@
+<div class="w-full">
+  <% if !@microposts.empty? %>
+    <% @feed_items = @microposts %>
+    <%= render "shared/feed", locals: { feed_items: @feed_items, page: @page } %>
+  <% else %>
+    <p class="font-medium text-gray-400 underline flex justify-center">No microposts yet.</p>
+  <% end %>
+</div>

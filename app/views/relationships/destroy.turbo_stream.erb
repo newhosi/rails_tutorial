@@ -1,8 +1,5 @@
 <%= turbo_stream.replace "follow_button" do %>
   <turbo-frame id="follow_button">
-    <div class="py-2">
-      <%= render "shared/stats", locals: { followers: @followers.count } %>
-    </div>
     <%= render partial: "users/follow", locals: { user: @user } %>
   </turbo-frame>
 <% end %>

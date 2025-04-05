@@ -1,7 +1,7 @@
 <% if @feed_items.any? %>
-  <ol class="divide-y mt-5">
+  <div class="grid grid-cols-3 space-x-2">
     <%= render @feed_items %>
-  </ol>
+  </div>
   <div class="mt-10 space-y-1">
     <%== pagy_nav(@pagy) if @pagy.pages > 1 %> <%== pagy_info(@pagy) %>
   </div>
