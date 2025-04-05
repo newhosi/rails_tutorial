@@ -50,6 +50,8 @@ gem "faker"
 
 gem "pagy"
 
+gem "mysql2"
+
 gem "carrierwave", "~> 3.1"
 
 group :development, :test do
