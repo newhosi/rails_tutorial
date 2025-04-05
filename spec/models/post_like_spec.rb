@@ -5,8 +5,8 @@
 #  like_at      :datetime         not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  micropost_id :integer          not null, primary key
-#  user_id      :integer          not null, primary key
+#  micropost_id :bigint           not null, primary key
+#  user_id      :bigint           not null, primary key
 #
 # Indexes
 #
@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  micropost_id  (micropost_id => microposts.id)
-#  user_id       (user_id => users.id)
+#  fk_rails_...  (micropost_id => microposts.id)
+#  fk_rails_...  (user_id => users.id)
 #
 require 'rails_helper'
 
