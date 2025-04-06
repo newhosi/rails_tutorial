@@ -26,7 +26,8 @@ admin.save!
   3.times do |n|
     # microposts
     user.microposts.create!(
-      content: Faker::Lorem.sentence(word_count: 5)
+      title: Faker::Lorem.sentence(word_count: 3),
+      content: Faker::Lorem.paragraph(sentence_count: 5)
     )
   end
 end
