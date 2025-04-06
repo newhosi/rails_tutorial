@@ -5,7 +5,7 @@ server:
 	bin/dev
 
 db-exec:
-	mysql -u root
+	mysql -u root -D sample_app_development
 
 db-migrate:
 	bin/rails db:migrate
