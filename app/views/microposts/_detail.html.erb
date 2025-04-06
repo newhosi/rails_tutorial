@@ -3,7 +3,7 @@
     <span>
       <%= image_tag micropost.picture.url if !micropost.picture.url.nil? %>
     </span>
-    <div class="flex flex-col px-6 h-full w-full divide-y">
+    <div class="flex flex-col h-full w-full divide-y">
       <div class="flex flex-row justify-between items-center py-6">
         <div class="flex flex-row justify-between items-center space-x-3">
           <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
@@ -21,14 +21,27 @@
           </div>
         <% end %>
       </div>
-      <span class="py-6 grow">
-        <%= micropost.content %>
+      <span class="flex flex-col py-6 grow space-y-2">
+        <div class="text-lg font-medium">
+          <%= micropost.title %>
+        </div>
+        <div>
+          <%= micropost.content %>
+        </div>
+        <div class="flex justify-end pr-4 font-light text-xs">
+          <%= time_ago_in_words(micropost.created_at) %> ago
+        </div>
       </span>
-      <div class="py-6">
-        <%= render "microposts/like", micropost: micropost %>
+      <div class="flex flex-col p-1 space-y-2">
+        <div class="flex flex-row">
+          <%= render "microposts/like", micropost: micropost %>
+        </div>
+        <div>
+          decide what to put here
+        </div>
       </div>
       <div class="border-t">
-        comment
+        todo: comment
       </div>
     </div>
   </div>
