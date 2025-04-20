@@ -16,7 +16,7 @@ test:
   username: root
   host: localhost
 
-production:
+staging:
   primary:
     <<: *default
     database: <%= ENV['DATABASE_NAME'] %>
