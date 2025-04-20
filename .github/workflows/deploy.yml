@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  EC2_USER: ec2-user
+  EC2_USER: ubuntu
   DEPLOY_PATH: /home/ubuntu/rails_tutorial
 
 jobs:
