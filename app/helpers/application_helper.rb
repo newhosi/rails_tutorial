@@ -11,6 +11,9 @@ module ApplicationHelper
   end
 
   def new_micropost
-    @micropost = current_user.microposts.build
+    if logged_in?
+      @micropost = current_user.microposts.build
+    else
+    end
   end
 end
