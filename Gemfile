@@ -77,7 +77,7 @@ end
 group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-core"
-  gem "rspec-rails", "~> 7.1"
+  gem "rspec-rails", "~> 8.0"
   gem "capybara"
   gem "rails-controller-testing"
   gem "dotenv-rails"
