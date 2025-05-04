@@ -4,8 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["panel"];
 
-  open(event) {
-    event.preventDefault();
+  open() {
     this.panelTarget.closest("[data-modal-id]").classList.remove("hidden");
   }
 

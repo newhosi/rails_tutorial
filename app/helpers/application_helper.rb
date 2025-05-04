@@ -9,4 +9,8 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def new_micropost
+    @micropost = current_user.microposts.build
+  end
 end

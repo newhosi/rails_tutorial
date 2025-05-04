@@ -1,4 +1,4 @@
-<%= render "shared/modal", id: "modal-#{micropost.id}" do %>
+<%= render "shared/modal", id: "modal-micropost-detail-#{micropost.id}" do %>
   <div class="flex flex-row w-full h-full">
     <span>
       <%= image_tag micropost.picture.url if !micropost.picture.url.nil? %>
