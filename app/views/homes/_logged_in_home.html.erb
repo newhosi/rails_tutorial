@@ -3,9 +3,9 @@
   <div class="text-5xl py-10 flex flex-col items-center">
     새별이가 재미삼아 만들고 있어요~
   </div>
-  <div class="flex flex-col space-y-4 pt-2">
+  <div class="flex flex-col space-y-4 pt-10 items-center">
     <% if @microposts.any? %>
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-3 gap-4">
         <%= render @microposts %>
       </div>
       <div class="mt-10 space-y-1">
