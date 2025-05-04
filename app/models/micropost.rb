@@ -28,6 +28,7 @@ class Micropost < ApplicationRecord
   has_many :liking_users, through: :post_likes, source: :user
 
   validates :user_id, presence: true
+  validates :title, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validate :picture_size
 

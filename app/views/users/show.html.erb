@@ -34,7 +34,7 @@
       </li>
     </ul>
   </div>
-  <div>
+  <div class="justify-center max-w-7xl mx-auto">
     <% case current_tab %>
     <% when "posts" %>
       <%= render "users/posts", locals: { microposts: @microposts, page: @page } %>

@@ -1,0 +1,68 @@
+<%= render "shared/modal", id: "modal-create-micropost" do %>
+  <div class="w-full h-full">
+    <%= form_with model: @micropost, 
+      url: microposts_path, 
+      html: { multipart: true }, 
+      data: { controller: "micropost", action: "submit->micropost#submit" },
+      class: "pt-6 h-full" do |f| %>
+      <%= render 'shared/error_messages', object: @micropost %>
+      <div class="flex flex-row justify-between h-full w-full">
+        <div 
+          data-controller="image-preview dropzone" 
+          data-action="dragover->dropzone#dragOver dragleave->dropzone#dragLeave drop->dropzone#drop" 
+          data-dropzone-image-preview-outlet="#image-preview" 
+          id="image-preview" 
+          class="relative w-3/5 border border-dashed rounded-xl border-4 flex flex-col justify-center"
+          onClick="document.getElementById('micropost_picture').click()"
+          >
+          <div>
+            <%= f.file_field :picture, 
+              id: "micropost_picture", 
+              accept: "image/jpeg,image/gif,image/png", 
+              data: { 
+                image_preview_target: "fileInput", 
+                dropzone_target: "fileInput",
+                action: "change->image-preview#updatePicture"
+              },
+              class: "hidden"
+              %>
+          </div>
+          <img data-image-preview-target="preview" class="hidden absolute inset-0 w-full h-full object-cover rounded-xl z-10"/>
+          <div data-image-preview-target="placeholder" class="flex flex-col items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="oklch(80.9% 0.105 251.813)" class="size-20">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
+            <div class="text-blue-300 font-medium">
+              drag and drop or click to upload
+            </div>
+          </div>
+        </div>
+        <div class="w-2/5 ml-2 flex flex-col space-y-2 justify-between px-3 pt-3">
+          <div class="flex flex-row space-x-2 items-center pb-3 border-b-2">
+            <div><%= gravatar_for current_user, size: 40 %></div>
+            <div class="font-semibold">
+              <%= current_user.name %>
+            </div>
+          </div>
+          <div class="flex flex-col w-full">
+            <%= f.text_field :title, 
+            placeholder: "title...", 
+            data: { micropost_target: "title" },
+            class: "font-medium w-full border-0 resize-none outline-none"
+            %>
+          </div>
+          <div class="flex flex-col w-full grow">
+            <%= f.text_area :content, 
+            placeholder: "create post..", 
+            data: { micropost_target: "content" },
+            class: "text-sm w-full grow rounded-xl border border-2 border-gray-200"
+            %>
+          </div>
+          <div class="flex flex-col w-full">
+            <%= f.submit "Post", class: "text-white rounded p-1 bg-sky-300 hover:bg-sky-500" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

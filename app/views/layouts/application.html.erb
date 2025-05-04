@@ -6,8 +6,8 @@
   </head>
 
   <body class="h-full flex flex-col">
-    <div class="fixed left-0 top-0 h-full w-64">
-      <%= render 'layouts/sidebar' %>
+    <div class="fixed left-0 top-0 h-full w-64 z-50">
+      <%= render 'layouts/sidebar', locals: { micropost: new_micropost }%>
     </div>
 
     <main class="flex flex-grow flex-col items-center justify-center ml-64">

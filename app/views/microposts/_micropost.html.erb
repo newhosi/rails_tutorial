@@ -1,13 +1,18 @@
-<div id="micropost-<%= micropost.id %>" data-controller="modal">
-  <div data-action="click->modal#open" class="relative group flex flex-row items-top border p-4 rounded-lg">
-    <div class="font-light text-xs min-h-32 flex flex-col">
-      Posted <%= time_ago_in_words(micropost.created_at) %> ago
-    </div>
-    <div class="absolute inset-0 bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 bg-gray-100 transition">
-      <span> 
-        <%# 하트가 아니라, 댓글 수 로 바꿀 것 %>
-        <%= render "microposts/like", micropost: micropost %> 
-      </span>
+<div data-controller="modal">
+  <div class="flex flex-row rounded-lg shadow-sm z-0 min-h-96 min-w-80">
+    <div class="flex flex-col w-full">
+      <div data-action="click->modal#open" class="bg-blue-100 m-1 p-2 grow space-y-3 rounded-t-lg">
+        <%= render "shared/tag", tag: "tag" %>
+        <div class="text-lg font-normal">
+          <%= micropost.title %>
+        </div>
+      </div>
+      <div class="p-2">
+        <div class="flex items-end justify-between font-light text-xs ">
+          <%= render "microposts/like", micropost: micropost %>
+          <%= time_ago_in_words(micropost.created_at) %> ago
+        </div>
+      </div>
     </div>
   </div>
   <%= render "microposts/detail", micropost: micropost %>

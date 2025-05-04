@@ -9,4 +9,11 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def new_micropost
+    if logged_in?
+      @micropost = current_user.microposts.build
+    else
+    end
+  end
 end

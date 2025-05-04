@@ -35,6 +35,7 @@ FactoryBot.define do
   end
 
   factory :micropost do
+    title { "title" }
     content { "content" }
     created_at { 10.minutes.ago }
     user

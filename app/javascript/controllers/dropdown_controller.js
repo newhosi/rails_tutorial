@@ -4,14 +4,6 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["menu", "button"];
 
-  connect() {
-    console.log("Dropdown controller connected");
-  }
-
-  disconnect() {
-    console.log("Dropdown controller disconnected");
-  }
-
   toggle() {
     console.log("toggle");
     this.menuTarget.classList.toggle("hidden");

@@ -5,14 +5,15 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost && @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      flash[:success] = "micropost created!"
+      redirect_to current_user
     else
       @pagy, @feed_items = pagy(current_user.feed)
       if @feed_items.empty?
         @feed_items = []
       end
-      render "static_pages/home"
+      flash[:danger] = "Failed to create micropost."
+      redirect_to current_user
     end
   end
 
@@ -24,7 +25,7 @@ class MicropostsController < ApplicationController
 
   private
     def micropost_params
-      params.require(:micropost).permit(:content, :picture)
+      params.require(:micropost).permit(:title, :content, :picture)
     end
 
     def correct_user

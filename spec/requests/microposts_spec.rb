@@ -12,12 +12,13 @@ RSpec.describe "Microposts", type: :request do
     end
 
     context "when logged in" do
+      let!(:user) { create(:activate_user) }
       it "should create a micropost" do
-        log_in_as(create(:activate_user))
+        log_in_as(user)
         expect do
-          post microposts_path, params: { micropost: { content: "Lorem ipsum" } }
+          post microposts_path, params: { micropost: { content: "Lorem ipsum", title: "title" } }
         end.to change(Micropost, :count).by(1)
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(user)
       end
     end
   end
