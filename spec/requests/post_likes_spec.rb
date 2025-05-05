@@ -6,7 +6,7 @@ RSpec.describe "PostLikes", type: :request do
     context "when user is logged in" do
       it "likes the post" do
         log_in_as(user)
-        post micropost_likes_path(user.microposts.first.id)
+        post micropost_like_path(user.microposts.first.id)
         expect(user.liking?(user.microposts.first)).to be_truthy
         expect(response).to redirect_to(root_path)
       end
@@ -14,7 +14,7 @@ RSpec.describe "PostLikes", type: :request do
 
     context "when user is not logged in" do
       it "redirects to login page" do
-        post micropost_likes_path(user.microposts.first.id)
+        post micropost_like_path(user.microposts.first.id)
         expect(response).to redirect_to(login_path)
       end
     end
@@ -24,8 +24,8 @@ RSpec.describe "PostLikes", type: :request do
     context "when user is logged in" do
       it "unlikes the post" do
         log_in_as(user)
-        post micropost_likes_path(user.microposts.first.id)
-        delete micropost_like_path(user.microposts.first.id)
+        post micropost_like_path(user.microposts.first.id)
+        delete micropost_unlike_path(user.microposts.first.id)
         expect(user.liking?(user.microposts.first)).to be_falsey
         expect(response).to redirect_to(root_path)
       end
@@ -33,7 +33,7 @@ RSpec.describe "PostLikes", type: :request do
 
     context "when user is not logged in" do
       it "redirects to login page" do
-        delete micropost_likes_path(user.microposts.first.id)
+        delete micropost_unlike_path(user.microposts.first.id)
         expect(response).to redirect_to(login_path)
       end
     end
