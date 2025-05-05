@@ -83,6 +83,6 @@ group :development, :test do
   gem "dotenv-rails"
 end
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 4.2"
 
 gem "mini_magick", "~> 5.2"
