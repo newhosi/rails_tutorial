@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_06_053623) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_04_071030) do
   create_table "account_activations", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "activation_digest"
@@ -18,6 +18,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_06_053623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_account_activations_on_user_id"
+  end
+
+  create_table "book_marks", primary_key: ["user_id", "micropost_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "micropost_id", null: false
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["micropost_id"], name: "index_book_marks_on_micropost_id"
+    t.index ["user_id"], name: "index_book_marks_on_user_id"
+  end
+
+  create_table "bookmarks", primary_key: ["user_id", "micropost_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "micropost_id", null: false
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["micropost_id"], name: "index_bookmarks_on_micropost_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "microposts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -73,6 +89,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_06_053623) do
   end
 
   add_foreign_key "account_activations", "users"
+  add_foreign_key "book_marks", "microposts"
+  add_foreign_key "book_marks", "users"
+  add_foreign_key "bookmarks", "microposts"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "password_resets", "users"
   add_foreign_key "post_likes", "microposts"

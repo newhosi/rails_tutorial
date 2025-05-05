@@ -34,6 +34,9 @@ class User < ApplicationRecord
   has_many :post_likes, dependent: :destroy
   has_many :liked_posts, through: :post_likes, source: :micropost
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_posts, through: :bookmarks, source: :micropost
+
   has_one :account_activation, dependent: :destroy
 
   has_many :password_resets, dependent: :destroy
@@ -112,6 +115,18 @@ class User < ApplicationRecord
 
   def liking?(post)
     liked_posts.include?(post)
+  end
+
+  def bookmark(post)
+    bookmarked_posts << post
+  end
+
+  def unbookmark(post)
+    bookmarks.find_by(micropost_id: post.id)&.destroy
+  end
+
+  def bookmart?(post)
+    bookmarked_posts.include?(post)
   end
 
   private
