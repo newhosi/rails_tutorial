@@ -1,4 +1,4 @@
-<div data-controller="modal">
+<div data-controller="modal" class="w-full">
   <div class="flex flex-row rounded-lg shadow-sm z-0 min-h-96 min-w-80">
     <div class="flex flex-col w-full">
       <div data-action="click->modal#open" class="relative bg-blue-100 m-1 p-2 grow rounded-t-lg">
@@ -12,7 +12,11 @@
       </div>
       <div class="p-2">
         <div class="flex items-end justify-between font-light text-xs ">
-          <%= render "microposts/like", micropost: micropost %>
+          <div class="flex flex-row space-x-0.5">
+
+            <%= render "microposts/like", micropost: micropost %>
+            <%= render "microposts/bookmark", micropost: micropost %>
+          </div>
           <%= time_ago_in_words(micropost.created_at) %> ago
         </div>
       </div>

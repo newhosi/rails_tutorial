@@ -23,8 +23,15 @@
           <%= time_ago_in_words(micropost.created_at) %> ago
         </div>
       </span>
-      <div class="flex flex-row justify-between items-center pt-2">
-        <%= render "microposts/like", micropost: micropost %>
+      <div class="flex flex-row items-center justify-between pt-2">
+        <div class="flex flex-row space-x-2">
+          <%= turbo_frame_tag "like_button_#{micropost.id}" do %>
+            <%= render "microposts/like_form", micropost: micropost %>
+          <% end %>
+          <%= turbo_frame_tag "bookmark_button_#{micropost.id}" do %>
+            <%= render "microposts/bookmark_form", micropost: micropost %>
+          <% end %>
+        </div>
         <% if current_user?(micropost.user) %>
           <div class="pr-3">
             <%= link_to micropost, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>

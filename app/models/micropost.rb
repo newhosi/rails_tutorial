@@ -27,6 +27,9 @@ class Micropost < ApplicationRecord
   has_many :post_likes, dependent: :destroy
   has_many :liking_users, through: :post_likes, source: :user
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_users, through: :bookmarks, source: :user
+
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true, length: { maximum: 140 }

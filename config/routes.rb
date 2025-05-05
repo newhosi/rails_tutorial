@@ -33,8 +33,10 @@ Rails.application.routes.draw do
   # microposts
   resources :microposts, only: [ :create, :destroy ] do
     # likes
-    post "/likes", to: "post_likes#create"
-    delete "/likes", to: "post_likes#destroy", as: "like"
+    post "/likes", to: "post_likes#create", as: "like"
+    delete "/likes", to: "post_likes#destroy", as: "unlike"
+    post "/bookmarks", to: "bookmarks#create", as: "bookmark"
+    delete "/bookmarks", to: "bookmarks#destroy", as: "unbookmark"
   end
 
   # relationships
