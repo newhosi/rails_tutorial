@@ -16,7 +16,5 @@
       </svg>
     <% end %>
   <% end %>
-  <div class="text-xs text-slate-400">
-    <%= micropost.bookmarks.count %>
-  </div>
+  <%= bookmark_count_tag(micropost) %>
 </div>

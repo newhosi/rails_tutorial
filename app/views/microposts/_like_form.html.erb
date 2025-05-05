@@ -25,7 +25,5 @@
       </svg>
     <% end %>
   <% end %>
-  <div class="text-xs text-slate-400">
-    <%= micropost.post_likes.count %>
-  </div>
+  <%= like_count_tag(micropost) %>
 </div>
